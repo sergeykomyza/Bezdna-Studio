@@ -24,6 +24,34 @@
 // });
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function numberCounters(parent){
+    let numbers = document.querySelector(parent).querySelectorAll('.position__coord')
+    numbers.forEach(item => {
+        let letters = ".234576823234688765434364578543234576823234688765434364578543234576823234688765434364578543"
+        let interval = null
+        let iteration = 0
+        console.log(item)
+        clearInterval(interval);
+        interval = setInterval(() => {
+            item.innerText = item.innerText
+              .split("")
+              .map((letter, index) => {
+                if(index < iteration) {
+                  return item.dataset.value[index];
+                }
+                return letters[Math.floor(Math.random() * 26)]
+              })
+              .join("");
+            
+            if(iteration >= item.dataset.value.length){ 
+              clearInterval(interval);
+            }
+            
+            iteration += 1 / 10;
+          }, 30);
+        
+    })
+}
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -48,17 +76,20 @@ function sleep(ms) {
     i -= 5;
     document.querySelector('.animate').setAttribute('to', i)
     document.querySelector('.animate').setAttribute('dur', 1 + 's')
-    console.log(i);
+    // console.log(i);
     if (i === 7797) {
         document.querySelector('.position--0').style.opacity = '1'
+        numberCounters('.position--0')
       await sleep(1000);
     }
     if (i === 4902) {
         document.querySelector('.position--1').style.opacity = '1'
+        numberCounters('.position--1')
       await sleep(1000);
     }
     if (i === 1902) {
         document.querySelector('.position--2').style.opacity = '1'
+        numberCounters('.position--2')
       await sleep(1000);
     }
     if (i < 0) {
