@@ -1,0 +1,58 @@
+.present{
+
+  position: relative;
+  z-index: 1;
+  height: 113rem;
+  background: var(--color-0);
+  overflow: hidden;
+
+  &__bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+}
+
+.line{
+  position: absolute;
+  z-index: 1;
+  top: 15px;
+  left: -2px;
+  width: 103%;
+}
+
+.position{
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: all .3s;
+  
+  &--0{
+    bottom: 13.5rem;
+    left: 18.8rem;
+  }
+
+  &--1{
+    bottom: 48.4rem;
+    left: 89.6rem;
+  }
+
+  &--2{
+    top: 27.5rem;
+    right: 40.3rem;
+  }
+  
+  &__dot{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-2);
+  }
+
+  &__x{
+
+  }
+
+}
