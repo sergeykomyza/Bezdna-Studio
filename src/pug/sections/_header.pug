@@ -1,3 +1,29 @@
 include ./../mixins/_mixin.pug
 
+-
+  var headerMenu = [
+    {text: 'Главная',   link: '#'},
+    {text: 'Услуги',    link: '#'},
+    {text: 'Портфолио', link: '#'},
+    {text: 'О студии',  link: '#'},
+    {text: 'Клиенты',   link: '#'},
+    {text: 'Контакты',  link: '#'}
+  ]
+
 header.header
+  .container 
+    .header__box
+      .logo
+        include ./../layouts/_logo.pug
+        include ./../layouts/_logoText.pug
+      nav.header__nav 
+        ul.menu 
+          each item in headerMenu 
+            li.menu__item 
+              a.menu__link(href= item.link data-text= item.text)= item.text 
+        .connect 
+          a.connect__type.connect__type--tg(href="")
+            img(src="img/icon-telegram.svg", alt="@")
+          a.connect__type.connect__type--wh(href="")
+            img(src="img/icon-whatsapp.svg", alt="@")
+          a.connect__phone(href="" data-text="+7&nbsp;987&nbsp;111&nbsp;22&nbsp;33") +7&nbsp;987&nbsp;111&nbsp;22&nbsp;33  

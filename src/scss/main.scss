@@ -81,6 +81,12 @@ input, textarea{
 	}
 }
 
+.container{
+	max-width: 117rem;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
 .mobile{
 	display: none;
 	@media screen and ( max-width: 992px ){
@@ -149,4 +155,5 @@ input, textarea{
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 	СТИЛИ КОТОРЫЕ НЕ ПОВТОРЯЮТСЯ НА ДРУГИХ СТРАНИЦАХ 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+@import 'blocks/preloader';
 @import 'blocks/present';

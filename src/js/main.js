@@ -1,9 +1,3 @@
-// ================================================== исключение по наименованию страницы
-// const contactsPage = window.location.pathname == '/contacts.html'
-// if(contactsPage){
-//     ...
-// }
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ПРОКРУТКА, ШАПКА
 // document.addEventListener('DOMContentLoaded', function () {
@@ -23,79 +17,143 @@
 //     window.addEventListener('scroll', headerActiveToggle) // ПРИ СКРОЛЛЕ
 // });
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function numberCounters(parent){
-    let numbers = document.querySelector(parent).querySelectorAll('.position__coord')
-    numbers.forEach(item => {
-        let letters = ".234576823234688765434364578543234576823234688765434364578543234576823234688765434364578543"
-        let interval = null
-        let iteration = 0
-        console.log(item)
-        clearInterval(interval);
-        interval = setInterval(() => {
-            item.innerText = item.innerText
-              .split("")
-              .map((letter, index) => {
-                if(index < iteration) {
-                  return item.dataset.value[index];
-                }
-                return letters[Math.floor(Math.random() * 26)]
-              })
-              .join("");
-            
-            if(iteration >= item.dataset.value.length){ 
-              clearInterval(interval);
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PRELOADER & LOGO
+const logoIconAnimation = ()=> {
+    const groupsDots = document.querySelectorAll('.group-dots')
+    groupsDots.forEach(item => {
+        const groupsDotsItems = item.querySelectorAll('g')
+        groupsDotsItems.forEach(elem => {
+            const groupsDotsItems = elem.querySelectorAll('path')
+            let i = 0, speed = 150
+            setTimeout(show, speed)
+            function show(){
+                setTimeout(show, speed)
+                groupsDotsItems[i].style.opacity = '0'
+                setTimeout(()=>{
+                    groupsDotsItems.forEach(k => {
+                    k.style.opacity = '1'
+                    })
+                }, 100)
+                if(++i == groupsDotsItems.length){
+                    i = 0
+                } 
+                groupsDotsItems[i].opacity = '1'
             }
-            
-            iteration += 1 / 10;
-          }, 30);
-        
+        })
     })
 }
-function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  const startCodeWithInterval = (callback, timeout) => {
-    let enabled = true;
-    let taskId = null;
-    const stop = () => {
-      enabled = false;
-      clearTimeout(taskId);
-    };
-    const wrapper = async () => {
-      await callback();
-      if (enabled) {
-        taskId = setTimeout(wrapper, timeout);
+const logoTextAnimation = ()=> {
+    const letter = document.querySelectorAll('.logo-letters path')
+    var index = 0;
+    
+    function iteration(){
+      for(let i = 0; i < letter.length; i++){
+        setTimeout(()=>{
+          console.log(i, letter.length)
+          letter[i].classList.add('active')
+          setTimeout(()=>{
+            letter[i].classList.remove('active')
+          }, 100)
+          if(i == letter.length-1){
+            setTimeout(()=>{
+              letter.forEach(item=> {
+                item.classList.remove('active')
+              })
+            }, 100)
+          }
+        }, i*100)
       }
-    };
-    taskId = setTimeout(wrapper, timeout);
-    return stop;
-  };
-  let i = 8837;
-  const stopCode = startCodeWithInterval(async () => {
-    i -= 5;
-    document.querySelector('.animate').setAttribute('to', i)
-    document.querySelector('.animate').setAttribute('dur', 1 + 's')
-    // console.log(i);
-    if (i === 7797) {
-        document.querySelector('.position--0').style.opacity = '1'
-        numberCounters('.position--0')
-      await sleep(1000);
     }
-    if (i === 4902) {
-        document.querySelector('.position--1').style.opacity = '1'
-        numberCounters('.position--1')
-      await sleep(1000);
+    setInterval(iteration, 3500)  
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ АНИМАЦИЯ ЛИНИИ НА ПЕРВОМ ЭКРАНЕ И БЕГАЮЩИХ ЦИФР
+document.querySelector('.animate').setAttribute('dur', 1 + 's')
+const firstScreenAnimationLine = () => {
+    function numberCounters(parent){
+        let numbers = document.querySelector(parent).querySelectorAll('.position__coord')
+        numbers.forEach(item => {
+            let letters = ".234576823234688765434364578543234576823234688765434364578543234576823234688765434364578543"
+            let interval = null
+            let iteration = 0
+            clearInterval(interval)
+            interval = setInterval(() => {
+                item.innerText = item.innerText
+                  .split("")
+                  .map((letter, index) => {
+                    if(index < iteration) {
+                      return item.dataset.value[index];
+                    }
+                    return letters[Math.floor(Math.random() * 26)]
+                  })
+                  .join("")
+                if(iteration >= item.dataset.value.length){ 
+                  clearInterval(interval);
+                }
+                iteration += 1 / 10;
+              }, 30)
+        })
     }
-    if (i === 1902) {
-        document.querySelector('.position--2').style.opacity = '1'
-        numberCounters('.position--2')
-      await sleep(1000);
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms))
     }
-    if (i < 0) {
-      stopCode();
+    const startCodeWithInterval = (callback, timeout) => {
+        let enabled = true
+        let taskId = null
+        const stop = () => {
+            enabled = false
+            clearTimeout(taskId)
+        }
+        const wrapper = async () => {
+            await callback()
+            if (enabled) {
+                taskId = setTimeout(wrapper, timeout)
+            }
+        }
+        taskId = setTimeout(wrapper, timeout)
+        return stop
     }
-  }, 5);
+    let i = 8837
+    const stopCode = startCodeWithInterval(async () => {
+        i -= 5
+        document.querySelector('.animate').setAttribute('to', i)
+        // console.log( i );
+        if (i === 7797) {
+            document.querySelector('.position--0').style.opacity = '1'
+            numberCounters('.position--0')
+            await sleep(1000)
+        }
+        if (i === 4902) {
+            document.querySelector('.position--1').style.opacity = '1'
+            numberCounters('.position--1')
+            await sleep(1000)
+        }
+        if (i === 1902) {
+            document.querySelector('.position--2').style.opacity = '1'
+            numberCounters('.position--2')
+            await sleep(1000);
+        }
+        if (i < 0) {
+            stopCode();
+        }
+    }, 5);
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+const staggerNumbers = (box) => {
+    let floatTextMenuLinks = document.querySelectorAll(box);
+    floatTextMenuLinks.forEach(link => {
+      let letters = link.textContent.split("")
+      link.textContent = ""
+      letters.forEach((letter, i) => {
+        let span = document.createElement("span")
+        span.textContent = letter
+        span.style.transitionDelay = `${i / 20}s`
+        span.dataset.text = letter
+        link.append(span)
+      })
+    })
+}
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ МАСКА ДЛЯ ИНПУТОВ (https://github.com/RobinHerbots/Inputmask)
 const inputMask = () => {
@@ -197,47 +255,16 @@ const map = () => {
 
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INITIAL
+logoIconAnimation()
+logoTextAnimation()
+setTimeout(()=>{
+    firstScreenAnimationLine()
+    // document.querySelector('.preloader').classList.add('is-deactive')
+}, 3000)
+staggerNumbers('.menu__link')
+staggerNumbers('.connect__phone')
+
+    
 
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/* иногда карта не загружается таким образом (например в битриксе)
- тогда надо сделать обращение к ней как это указано в документации, через ymaps.ready - https://yandex.ru/dev/maps/jsapi/doc/2.1/quick-start/index.html?from=techmapsmain
-
-ymaps.ready(init);
-
-function init(){
-
-    var myMap = new ymaps.Map("map", {
-        center: [56.745981, 37.179787],
-        zoom: 13,
-        controls: ['smallMapDefaultSet']
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
-
-    myGeoObject = new ymaps.GeoObject({
-        geometry: {
-            type: "Point"
-        },
-    });
-    myMap.geoObjects
-        .add(myGeoObject)
-        .add(new ymaps.Placemark([56.745981, 37.179787], {
-            balloonContent: '<strong></strong>',
-            iconCaption: 'М.О., г. Королев, ул. Ленина 12'
-        }, {
-            preset: 'islands#blueCircleDotIconWithCaption',
-            iconCaptionMaxWidth: '200'
-        }));
-
-    myMap.setType('yandex#publicMap');
-    // отключаем масштабирование скроллом       
-    myMap.behaviors.disable('scrollZoom');
-    // на мобильных устройствах... (проверяем по userAgent браузера)
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        //... отключаем перетаскивание карты
-        myMap.behaviors.disable('drag');
-    }
-        
-}
-*/
