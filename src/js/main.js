@@ -140,7 +140,7 @@ const firstScreenAnimationLine = () => {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const staggerNumbers = (box) => {
+const staggerSymbols = (box) => {
     let floatTextMenuLinks = document.querySelectorAll(box);
     floatTextMenuLinks.forEach(link => {
       let letters = link.textContent.split("")
@@ -255,15 +255,30 @@ const map = () => {
 
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ GSAP
+const GsapAnimation = () => {
+    const tl = gsap.timeline()
+    tl.to('.js-animateText1', {display: 'flex'})
+        .to('.js-animateText1', {duration: 1, text: 'Запуск и '})
+        .to('.js-animateText2', {display: 'flex'})
+        .to('.js-animateText1', {border: 'none'})
+        .to('.js-animateText2', {duration: 1, text: 'продвижение '})
+        .to('.js-animateText3', {display: 'flex'})
+        .to('.js-animateText2', {border: 'none'})
+        .to('.js-animateText3', {duration: 1, text: 'вашего бизнеса  '})
+        .to('.js-animateText3', {delay: 2.5, border: 'none'})
+}
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INITIAL
 logoIconAnimation()
 logoTextAnimation()
 setTimeout(()=>{
+    document.querySelector('.preloader').classList.add('is-deactive')
     firstScreenAnimationLine()
-    // document.querySelector('.preloader').classList.add('is-deactive')
+    GsapAnimation()
 }, 3000)
-staggerNumbers('.menu__link')
-staggerNumbers('.connect__phone')
+staggerSymbols('.menu__link')
+staggerSymbols('.connect__phone')
 
     
 

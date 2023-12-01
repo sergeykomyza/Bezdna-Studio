@@ -1,0 +1,64 @@
+.title{
+
+  &--decor{
+    &:before{
+      content: '';
+      display: block;
+      width: 6rem;
+      height: 0.3rem;
+      margin-bottom: 5rem;
+      background: var(--color-2);
+    }
+  }
+
+}
+
+.button{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 6rem;
+  padding: 0 3.3rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-1);
+  border: 1px solid var(--color-2);
+  background: var(--color-0);
+  overflow: hidden;
+  
+  &__show{
+    position: relative;
+    z-index: 2;
+    color: var(--color-1);
+    background: var(--color-0);
+  }
+
+  &__hover{
+    position: absolute;
+    z-index: 1;
+    transform: scale(0.5);
+  }
+
+  &:hover{
+    .button__show{
+      color: var(--color-2);
+      transition: all .3s;
+    }
+    .button__hover{
+      animation-name: buttonText;
+      animation-duration: 0.5s;
+    }
+  }
+}
+
+@keyframes buttonText{
+  0%{
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(-2rem) scale(1.05);
+    opacity: 0;
+  }
+}

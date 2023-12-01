@@ -22,5 +22,13 @@
       .position__coords 
         span.position__coord(data-value= item.coord1)= item.coord1
         span.position__coord(data-value= item.coord2)= item.coord2
-  
-  include ./../sections/_header.pug
+
+  .present__content
+    .container
+      h1.present__title.title--decor 
+        span.js-animateText1 
+        span.js-animateText2  
+        span.js-animateText3 
+      button.button.present__button 
+        span.button__show Поехали!
+        span.button__hover Поехали!
