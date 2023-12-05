@@ -28,10 +28,10 @@ const logoIconAnimation = ()=> {
             setTimeout(show, speed)
             function show(){
                 setTimeout(show, speed)
-                groupsDotsItems[i].style.opacity = '0'
+                groupsDotsItems[i].style.transform = 'scale(1.1)'
                 setTimeout(()=>{
                     groupsDotsItems.forEach(k => {
-                    k.style.opacity = '1'
+                    k.style.transform = 'scale(1)'
                     })
                 }, 100)
                 if(++i == groupsDotsItems.length){
@@ -49,7 +49,6 @@ const logoTextAnimation = ()=> {
     function iteration(){
       for(let i = 0; i < letter.length; i++){
         setTimeout(()=>{
-          console.log(i, letter.length)
           letter[i].classList.add('active')
           setTimeout(()=>{
             letter[i].classList.remove('active')
@@ -126,6 +125,7 @@ const firstScreenAnimationLine = () => {
         if (i === 4902) {
             document.querySelector('.position--1').style.opacity = '1'
             numberCounters('.position--1')
+            document.querySelector('.present__hero').classList.add('show')
             await sleep(1000)
         }
         if (i === 1902) {
@@ -139,7 +139,16 @@ const firstScreenAnimationLine = () => {
     }, 5);
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+const movieHero = () => {
+    const screen = document.querySelector('.present')
+    const hero = document.querySelector('.present__hero')
+    screen.addEventListener('mousemove', function(e){
+        hero.style.transform = ` translate(${110+(e.clientX / 100)}%, ${0+(e.clientY / 100)}rem) `
+    })
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Hover on Text
 const staggerSymbols = (box) => {
     let floatTextMenuLinks = document.querySelectorAll(box);
     floatTextMenuLinks.forEach(link => {
@@ -273,9 +282,10 @@ const GsapAnimation = () => {
 logoIconAnimation()
 logoTextAnimation()
 setTimeout(()=>{
-    document.querySelector('.preloader').classList.add('is-deactive')
+    // document.querySelector('.preloader').classList.add('is-deactive')
     firstScreenAnimationLine()
     GsapAnimation()
+    movieHero()
 }, 3000)
 staggerSymbols('.menu__link')
 staggerSymbols('.connect__phone')

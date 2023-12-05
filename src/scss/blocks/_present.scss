@@ -50,6 +50,19 @@
     z-index: 2;
   }
 
+  &__hero{
+    position: absolute;
+    right: 50%;
+    transform: translate(100%, 10rem);
+    width: 49.3rem;
+    opacity: 0;
+    pointer-events: none;
+    &.show{
+      transform: translate(110%, 0rem);
+      opacity: 1;
+    }
+  }
+
 }
 
 .line{

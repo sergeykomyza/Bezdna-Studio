@@ -1,3 +1,4 @@
+
 .title{
 
   &--decor{
@@ -15,6 +16,7 @@
 
 .button{
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,39 +28,22 @@
   border: 1px solid var(--color-2);
   background: var(--color-0);
   overflow: hidden;
-  
-  &__show{
-    position: relative;
-    z-index: 2;
-    color: var(--color-1);
-    background: var(--color-0);
-  }
+  transition: all .3s;
 
-  &__hover{
+  &:after{
+    content: '';
     position: absolute;
-    z-index: 1;
-    transform: scale(0.5);
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(105deg, rgba(233,32,79,1) 50%, rgba(0,0,0,0) 50%);
+    transition: all 0.5s ease-in-out;
   }
 
-  &:hover{
-    .button__show{
-      color: var(--color-2);
-      transition: all .3s;
-    }
-    .button__hover{
-      animation-name: buttonText;
-      animation-duration: 0.5s;
-    }
+  &:hover:after{
+    width: 210%;
   }
 }
 
-@keyframes buttonText{
-  0%{
-    transform: translateY(0rem);
-    opacity: 1;
-  }
-  100%{
-    transform: translateY(-2rem) scale(1.05);
-    opacity: 0;
-  }
-}
