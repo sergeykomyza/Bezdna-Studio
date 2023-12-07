@@ -282,7 +282,7 @@ const GsapAnimation = () => {
 logoIconAnimation()
 logoTextAnimation()
 setTimeout(()=>{
-    // document.querySelector('.preloader').classList.add('is-deactive')
+    document.querySelector('.preloader').classList.add('is-deactive')
     firstScreenAnimationLine()
     GsapAnimation()
     movieHero()
