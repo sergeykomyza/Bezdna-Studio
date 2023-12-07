@@ -4,6 +4,11 @@
     {coord1: '20.9008222', coord2: '30.9243752'},
     {coord1: '22.8008444', coord2: '32.8253759'}
   ]
+  const presentServices = [
+    {icon: 'icon-present-service-1.png', title: 'Легкий старт!',    text: 'Начинаете бизнес? Поможем определить цели и взять курс на целевую аудиторию.'},
+    {icon: 'icon-present-service-2.png', title: 'Продукт брендинг', text: 'Разработаем стратегию и стиль, соответствующий вашему продукту или услуге, выделим его на фоне конкурентов.'},
+    {icon: 'icon-present-service-3.png', title: 'Редизайн сайта',   text: 'Проанализируем существующий сайт, выявим проблемы, предложим решения, реализуем и запустим!'}
+  ]
 
 .present
 
@@ -25,11 +30,16 @@
         span.position__coord(data-value= item.coord1)= item.coord1
         span.position__coord(data-value= item.coord2)= item.coord2
 
-  .present__content
+  .container
     img.present__hero(src="img/hero.png", alt="@")
-    .container
+    .present__content
       h1.present__title.title--decor 
         span.js-animateText1 
         span.js-animateText2  
         span.js-animateText3 
       button.button.present__button Поехали!
+
+      .present-services 
+        each item, i in presentServices
+          .present-services__item
+

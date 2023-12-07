@@ -268,21 +268,30 @@ const map = () => {
 const GsapAnimation = () => {
     const tl = gsap.timeline()
     tl.to('.js-animateText1', {display: 'flex'})
-        .to('.js-animateText1', {duration: 1, text: 'Запуск и '})
+        .to('.js-animateText1', {duration: 0.5, text: 'Запуск и '})
         .to('.js-animateText2', {display: 'flex'})
         .to('.js-animateText1', {border: 'none'})
-        .to('.js-animateText2', {duration: 1, text: 'продвижение '})
+        .to('.js-animateText2', {duration: 0.5, text: 'продвижение '})
         .to('.js-animateText3', {display: 'flex'})
         .to('.js-animateText2', {border: 'none'})
-        .to('.js-animateText3', {duration: 1, text: 'вашего бизнеса  '})
-        .to('.js-animateText3', {delay: 2.5, border: 'none'})
+        .to('.js-animateText3', {duration: 0.5, text: 'вашего бизнеса  '})
+        .to('.js-animateText3', {delay: 1, border: 'none'})
+        .from('.present-services__item', {stagger: 0.5, transform: 'translateY(10rem)', opacity: '0'})
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INITIAL
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INIT
+const preloader = true
 logoIconAnimation()
 logoTextAnimation()
+
+    if(!preloader){
+        document.querySelector('.preloader').style.display = 'none'
+    } else {
+        setTimeout(()=>{
+            document.querySelector('.preloader').classList.add('is-deactive')
+        }, 3000)
+    }
 setTimeout(()=>{
-    document.querySelector('.preloader').classList.add('is-deactive')
     firstScreenAnimationLine()
     GsapAnimation()
     movieHero()

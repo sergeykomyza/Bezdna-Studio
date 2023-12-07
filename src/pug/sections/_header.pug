@@ -5,7 +5,7 @@ include ./../mixins/_mixin.pug
     {text: 'Главная',   link: '#'},
     {text: 'Услуги',    link: '#'},
     {text: 'Портфолио', link: '#'},
-    {text: 'О студии',  link: '#'},
+    {text: 'О&nbsp;студии',  link: '#'},
     {text: 'Клиенты',   link: '#'},
     {text: 'Контакты',  link: '#'}
   ]
@@ -20,7 +20,7 @@ header.header
         ul.menu 
           each item in headerMenu 
             li.menu__item 
-              a.menu__link(href= item.link data-text= item.text)= item.text 
+              a.menu__link(href= item.link data-text= item.text) !{item.text}
         .connect 
           a.connect__type.connect__type--tg(href="")
             img(src="img/icon-telegram.svg", alt="@")
