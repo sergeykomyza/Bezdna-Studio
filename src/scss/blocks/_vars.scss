@@ -8,4 +8,22 @@
 }
 
 // MIXINS
-	// @mixin NAMEMIXIN
+
+$mediaWidth1: 992px;
+$mediaWidth2: 768px;
+$mediaWidth3: 565px;
+@mixin mediaWidth1 {
+	@media (max-width: $mediaWidth1) {
+		@content;
+	}
+}
+@mixin mediaWidth2 {
+	@media (max-width: $mediaWidth2) {
+		@content;
+	}
+}
+@mixin mediaWidth3 {
+	@media (max-width: $mediaWidth3) {
+		@content;
+	}
+}

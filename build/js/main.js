@@ -126,6 +126,9 @@ const firstScreenAnimationLine = () => {
             document.querySelector('.position--1').style.opacity = '1'
             numberCounters('.position--1')
             document.querySelector('.present__hero').classList.add('show')
+            setTimeout(()=>{
+                document.querySelector('.present__hero').style.transition = 'none'
+            }, 1000)
             await sleep(1000)
         }
         if (i === 1902) {
@@ -143,9 +146,11 @@ const firstScreenAnimationLine = () => {
 const movieHero = () => {
     const screen = document.querySelector('.present')
     const hero = document.querySelector('.present__hero')
-    screen.addEventListener('mousemove', function(e){
-        hero.style.transform = ` translate(${110+(e.clientX / 100)}%, ${0+(e.clientY / 100)}rem) `
-    })
+    if(document.documentElement.clientWidth > 992){
+        screen.addEventListener('mousemove', function(e){
+            hero.style.transform = ` translate(${110+(e.clientX / 100)}%, ${0+(e.clientY / 100)}rem) `
+        })
+    }
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Hover on Text
@@ -280,24 +285,24 @@ const GsapAnimation = () => {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INIT
-const preloader = true
-logoIconAnimation()
-logoTextAnimation()
+document.addEventListener('DOMContentLoaded', function(){
+    
+    logoIconAnimation()
+    logoTextAnimation()
 
-    if(!preloader){
-        document.querySelector('.preloader').style.display = 'none'
-    } else {
-        setTimeout(()=>{
-            document.querySelector('.preloader').classList.add('is-deactive')
-        }, 3000)
-    }
-setTimeout(()=>{
+    setTimeout(()=>{
+        // document.querySelector('.preloader').classList.add('is-deactive')
+    }, 3000)
     firstScreenAnimationLine()
     GsapAnimation()
     movieHero()
-}, 3000)
-staggerSymbols('.menu__link')
-staggerSymbols('.connect__phone')
+    
+    if(document.documentElement.clientWidth > 992){
+        staggerSymbols('.menu__link')
+        staggerSymbols('.connect__phone')
+    }
+
+})
 
     
 

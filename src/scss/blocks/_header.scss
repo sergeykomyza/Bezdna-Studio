@@ -10,7 +10,7 @@
 .header{
 
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   width: 100%;
@@ -63,12 +63,29 @@
 
 .menu{
 
-  display: flex;
-  align-items: center;
-  gap: 1.7rem;
+  margin-left: auto;
+  margin-right: 1rem;
 
-  &__item{
+  @include mediaWidth1{
+    position: fixed;
+    z-index: 5;
+    right: -91%;
+    top: 0; 
+    width: 90%;
+    height: 100%;
+    padding: 3rem;
+    background: rgba(0,0,0,0.99) ;
+  }
 
+  &__list{
+    display: flex;
+    align-items: center;
+    gap: 1.7rem;
+    @include mediaWidth1{
+      flex-direction: column;
+      align-items: flex-end;
+      
+    }
   }
 
   &__link{
@@ -79,6 +96,9 @@
     font-weight: 700;
     color: var(--color-1);
     overflow: hidden;
+    @include mediaWidth1{
+      font-size: 3rem;
+    }
 
     span{
       position: relative;
@@ -169,4 +189,40 @@
   }
 
 }
+
+.burger{ 
+  position: absolute;
+  z-index: 9;
+  top: 3rem;
+  left: -6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  overflow: hidden;
+   
+  span{
+    width: 30px;
+    height: 3px;
+    background: var(--color-1);
+    transition: all 0.5s;
+  }
+  &.is-open{
+    span{
+      &:nth-child(1){
+        transform: rotate(45deg) translateY(9px) translateX(5px);
+        width: 35px;
+      }
+      &:nth-child(2){
+        transform: translateX(-100%);
+      }
+      &:nth-child(3){
+        transform: rotate(-45deg) translateY(-9px) translateX(5px);
+        width: 35px;
+      }   
+    }
+  }
+ }
 

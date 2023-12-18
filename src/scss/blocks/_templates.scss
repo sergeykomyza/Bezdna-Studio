@@ -30,20 +30,24 @@
   overflow: hidden;
   transition: all .3s;
 
-  &:after{
-    content: '';
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(105deg, rgba(233,32,79,1) 50%, rgba(0,0,0,0) 50%);
-    transition: all 0.5s ease-in-out;
-  }
+  @media(hover: hover){
 
-  &:hover:after{
-    width: 210%;
+    &:after{
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(105deg, rgba(233,32,79,1) 50%, rgba(0,0,0,0) 50%);
+      transition: all 0.5s ease-in-out;
+    }
+
+    &:hover:after{
+      width: 210%;
+    }
+
   }
 }
 

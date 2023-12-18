@@ -42,4 +42,7 @@
       .present-services 
         each item, i in presentServices
           .present-services__item
+            img.present-services__icon(src="img/"+item.icon, alt="@")
+            .present-services__title= item.title 
+            p.present-services__text !{item.text}
 

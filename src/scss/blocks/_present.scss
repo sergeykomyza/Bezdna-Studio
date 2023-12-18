@@ -15,6 +15,9 @@
   padding-top: 24rem;
   background: var(--color-0);
   overflow: hidden;
+  @include mediaWidth1 {
+		height: auto; 
+	}
 
   .container{
     height: 100%;
@@ -49,6 +52,10 @@
     }
   }
 
+  &__button{
+    margin-bottom: 9rem;
+  }
+
   &__content{
     position: relative;
     z-index: 2;
@@ -70,6 +77,18 @@
       transform: translate(110%, 0rem);
       opacity: 1;
     }
+    @include mediaWidth2{
+      width: 38.3rem;
+      &.show{
+        transform: translate(116.55%, -13.41rem);
+      }
+    }
+    @include mediaWidth3{
+      width: 29.3rem;
+      &.show{
+        transform: translate(116.55%, -13.41rem);
+      }
+    }
   }
 
   &-services{
@@ -77,11 +96,46 @@
     justify-content: space-between;
     width: 100%;
     margin-top: auto;
+    @include mediaWidth1{
+      flex-direction: column;
+      gap: 1rem;
+    }
 
     &__item{
       width: 38rem;
       height: 38.5rem;
+      padding-top: 6.4rem;
+      padding-left: 4.2rem;
+      padding-right: 3rem;
       background: var(--color-3);
+      @include mediaWidth1{
+        width: 100%;
+      }
+    }
+
+    &__icon{
+      margin-bottom: 3.6rem;
+      height: 8.8rem;
+    }
+
+    &__title{
+      margin-bottom: 2.3rem;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--color-1);
+      &:after{
+        content: '';
+        display: block;
+        width: 6rem;
+        height: 0.3rem;
+        margin-top: 1rem;
+        background: var(--color-1);
+      }
+    }
+
+    &__text{
+      font-size: 1.6rem;
+      color: var(--color-1);
     }
   }
 
@@ -93,6 +147,9 @@
   top: 0;
   left: 0;
   width: 103%;
+  @include mediaWidth1 {
+		display: none; 
+	}
 }
 
 .position{
@@ -100,6 +157,9 @@
   z-index: 1;
   opacity: 0;
   transition: all .3s;
+  @include mediaWidth1 {
+		display: none !important; 
+	}
   
   &--0{
     bottom: 13.6rem;

@@ -39,6 +39,15 @@ html{
 	&.fixed{
 		overflow: hidden;
 	}
+	@include mediaWidth1{
+		font-size: 0.8vw;
+	}
+	@include mediaWidth2{
+		font-size: 1.1vw;
+	}
+	@include mediaWidth3{
+		font-size: 1.4vw;
+	}
 }
 body{
 	font-family: var(--font-0);
