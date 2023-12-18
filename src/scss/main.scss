@@ -36,7 +36,7 @@ html{
 	font-size: 0.52084vw;
 	// font-size: 10px;
 	overflow-x: hidden;
-	&.fixed{
+	&.is-fixed{
 		overflow: hidden;
 	}
 	@include mediaWidth1{
@@ -46,7 +46,7 @@ html{
 		font-size: 1.1vw;
 	}
 	@include mediaWidth3{
-		font-size: 1.4vw;
+		font-size: 1.9vw;
 	}
 }
 body{

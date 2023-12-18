@@ -40,6 +40,10 @@
     font-size: 8rem;
     font-weight: 900;
     color: var(--color-1);
+
+    @include mediaWidth3{
+      font-size: 6rem;
+    }
     
     span{
       position: relative;
@@ -80,17 +84,17 @@
     @include mediaWidth2{
       width: 38.3rem;
       &.show{
-        transform: translate(116.55%, -13.41rem);
+        transform: translate(116.55%, -9.41rem);
       }
     }
     @include mediaWidth3{
       width: 29.3rem;
       &.show{
-        transform: translate(116.55%, -13.41rem);
+        transform: translate(86.55%, -9.41rem);
       }
     }
   }
-
+	
   &-services{
     display: flex;
     justify-content: space-between;

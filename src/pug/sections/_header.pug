@@ -16,9 +16,9 @@ header.header
       .logo
         include ./../layouts/_logo.pug
         include ./../layouts/_logoText.pug
-      .menu
+      .menu.js-menu
         .mobile
-          button.burger
+          button.burger.js-toggleMobileMenu
             each span in [1, 2, 3]
               span
         ul.menu__list 

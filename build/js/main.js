@@ -1,5 +1,12 @@
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ПРОКРУТКА, ШАПКА
+const header = () => {
+    document.querySelector('.js-toggleMobileMenu').addEventListener('click', function(){
+        this.classList.toggle('is-open')
+        document.documentElement.classList.toggle('is-fixed')
+        document.querySelector('.js-menu').classList.toggle('is-open')
+    })
+}
 // document.addEventListener('DOMContentLoaded', function () {
 //     // СКРОЛЛ К НУЖНОЙ СЕКЦИИ ПО КЛИКУ НА ПУНКТАХ МЕНЮ
 //     $('.menu__link').click(function () {
@@ -286,7 +293,7 @@ const GsapAnimation = () => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INIT
 document.addEventListener('DOMContentLoaded', function(){
-    
+    header()
     logoIconAnimation()
     logoTextAnimation()
 
