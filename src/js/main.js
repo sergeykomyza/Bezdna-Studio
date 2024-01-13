@@ -287,6 +287,7 @@ const GsapAnimation = () => {
         .to('.js-animateText3', {display: 'flex'})
         .to('.js-animateText2', {border: 'none'})
         .to('.js-animateText3', {duration: 0.5, text: 'вашего бизнеса  '})
+        .from('.js-animateElem1', {opacity: 0, transform: 'translateY(-1rem)'})
         .to('.js-animateText3', {delay: 1, border: 'none'})
         .from('.present-services__item', {stagger: 0.5, transform: 'translateY(10rem)', opacity: '0'})
 }
@@ -298,11 +299,11 @@ document.addEventListener('DOMContentLoaded', function(){
     logoTextAnimation()
 
     setTimeout(()=>{
-        // document.querySelector('.preloader').classList.add('is-deactive')
+        document.querySelector('.preloader').classList.add('is-deactive')
+        GsapAnimation()
+        firstScreenAnimationLine()
+        movieHero()
     }, 3000)
-    firstScreenAnimationLine()
-    GsapAnimation()
-    movieHero()
     
     if(document.documentElement.clientWidth > 992){
         staggerSymbols('.menu__link')
